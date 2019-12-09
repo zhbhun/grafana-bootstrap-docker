@@ -327,7 +327,7 @@
       },
       "yaxes": [
         {
-          "decimals": 0,
+          "decimals": 1,
           "format": "none",
           "label": "",
           "logBase": 1,
