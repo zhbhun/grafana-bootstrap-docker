@@ -17,3 +17,10 @@ Example: `docker run -it --link graphite_grafana_1:grafana --network graphite_de
 1. Export JSON from Grafana (see [Grafana Doc](http://docs.grafana.org/reference/export_import/)) and put it in the /dashboards folder
 1. Rebuild the container `docker build -t sitespeedio_dashboards .`
 1. Run the container `docker run -it --link <name of your grafana container>:grafana --network <name of your grafana network> sitespeedio_dashboards`
+
+---
+
+在源码基础上做了以下几点调整
+
+1. 去掉了 webpagetest 的配置数据。
+2. Page Summary 增加了 "Performance Grade" 指标。
