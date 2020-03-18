@@ -838,7 +838,7 @@
         "hideZero": false,
         "max": true,
         "min": true,
-        "rightSide": false,
+        "rightSide": true,
         "show": true,
         "total": false,
         "values": true
@@ -1526,7 +1526,7 @@
     ]
   },
   "timezone": "browser",
-  "title": "页面统计",
+  "title": "page",
   "uid": "000000043",
   "version": 38
 }
