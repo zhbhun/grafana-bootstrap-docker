@@ -25,6 +25,8 @@ Example: `docker run -it --link graphite_grafana_1:grafana --network graphite_de
 1. 去掉了 webpagetest 的配置数据。
 2. Page Summary 增加了 "Performance Grade" 指标。
 
+- 20200318：重构了配置文件，去掉了大量的指标
+
 ---
 
 ## 配置说明
