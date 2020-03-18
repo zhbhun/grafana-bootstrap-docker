@@ -121,7 +121,7 @@
     {
       "id": 20000,
       "type": "row",
-      "title": "",
+      "title": "可视化指标",
       "collapsed": false,
       "gridPos": {
         "h": 1,
