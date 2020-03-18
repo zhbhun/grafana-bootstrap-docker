@@ -147,7 +147,7 @@
         "dataLinks": []
       },
       "gridPos": {
-        "h": 8,
+        "h": 10,
         "w": 12,
         "x": 0,
         "y": 1
@@ -199,9 +199,9 @@
       },
       "yaxes": [
         {
+          "label": "分值",
           "decimals": 1,
           "format": "none",
-          "label": "",
           "logBase": 1,
           "max": 10,
           "min": 0,
@@ -228,7 +228,7 @@
       "description": "加载性能指标",
       "datasource": "${DS_GRAPHITE}",
       "gridPos": {
-        "h": 8,
+        "h": 10,
         "w": 12,
         "x": 12,
         "y": 1
@@ -330,15 +330,133 @@
     {
       "id": 20003,
       "type": "table",
+      "title": "对比昨天",
+      "transform": "timeseries_aggregations",
+      "datasource": "${DS_GRAPHITE}",
+      "description": "今天性能指标平均值与昨天进行对比，。 \n\n 红色背景表示需要回归，绿色表示性能变好，黄色表示该变化在误差范围内。您可能需要根据网站的频率来调整阈值。默认阈值为+ -10％。",
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 0,
+        "y": 11
+      },
+      "editable": true,
+      "error": false,
+      "filterNull": false,
+      "fontSize": "100%",
+      "links": [],
+      "options": {},
+      "pageSize": null,
+      "scroll": true,
+      "showHeader": true,
+      "sort": {
+        "col": 0,
+        "desc": false
+      },
+      "columns": [
+        {
+          "text": "Current",
+          "value": "current"
+        }
+      ],
+      "styles": [
+        {
+          "pattern": "Metric",
+          "alias": "指标",
+          "type": "string"
+        },
+        {
+          "pattern": "Current",
+          "alias": "变化",
+          "type": "number",
+          "unit": "percent",
+          "decimals": 0,
+          "thresholds": [
+            "-10",
+            "10"
+          ],
+          "colorMode": "cell",
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(245, 54, 54, 0.9)"
+          ]
+        },
+        {
+          "pattern": ""
+        }
+      ],
+      "targets": [
+        {
+          "refId": "A",
+          "target": "timeShift(movingAverage($base.$path.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.custom.grade.$function, '24h'), '1d')",
+          "textEditor": true,
+          "refCount": 3,
+          "hide": true
+        },
+        {
+          "refId": "B",
+          "target": "alias(aliasByNode(asPercent(diffSeries(movingAverage($base.$path.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.custom.grade.$function, '24h'), #A), #A), 10), '性能评分')",
+          "textEditor": true,
+          "refCount": 2,
+          "targetFull": "alias(aliasByNode(asPercent(diffSeries(movingAverage($base.$path.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.custom.grade.$function, '24h'), timeShift(movingAverage($base.$path.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.custom.grade.$function, '24h'), '1d')), timeShift(movingAverage($base.$path.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.custom.grade.$function, '24h'), '1d')), 10), '性能评分')"
+        },
+        {
+          "refId": "C",
+          "target": "timeShift(movingAverage($base.$path.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.timings.firstPaint.$function, '24h'), '1d')",
+          "textEditor": true,
+          "refCount": 3,
+          "hide": true
+        },
+        {
+          "refId": "D",
+          "target": "alias(aliasByNode(asPercent(diffSeries(movingAverage($base.$path.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.timings.firstPaint.$function, '24h'), #C), #C), 10), '首次绘制')",
+          "textEditor": true,
+          "refCount": 2,
+          "targetFull": "alias(aliasByNode(asPercent(diffSeries(movingAverage($base.$path.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.timings.firstPaint.$function, '24h'), timeShift(movingAverage($base.$path.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.timings.firstPaint.$function, '24h'), '1d')), timeShift(movingAverage($base.$path.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.timings.firstPaint.$function, '24h'), '1d')), 10), '首次绘制')"
+        },
+        {
+          "refId": "E",
+          "target": "timeShift(movingAverage($base.$path.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.cdp.performance.FirstMeaningfulPaint.$function, '24h'), '1d')",
+          "textEditor": true,
+          "refCount": 3,
+          "hide": true
+        },
+        {
+          "refId": "F",
+          "target": "alias(aliasByNode(asPercent(diffSeries(movingAverage($base.$path.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.cdp.performance.FirstMeaningfulPaint.$function, '24h'), #E), #E), 10), '首次有效绘制')",
+          "refCount": 3,
+          "textEditor": true,
+          "targetFull": "alias(aliasByNode(asPercent(diffSeries(movingAverage($base.$path.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.cdp.performance.FirstMeaningfulPaint.$function, '24h'), timeShift(movingAverage($base.$path.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.cdp.performance.FirstMeaningfulPaint.$function, '24h'), '1d')), timeShift(movingAverage($base.$path.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.cdp.performance.FirstMeaningfulPaint.$function, '24h'), '1d')), 10), '首次有效绘制')"
+        },
+        {
+          "refId": "G",
+          "target": "timeShift(movingAverage($base.$path.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.visualMetrics.SpeedIndex.$function, '24h'), '1d')",
+          "textEditor": true,
+          "refCount": 3,
+          "hide": true
+        },
+        {
+          "refId": "H",
+          "target": "alias(aliasByNode(asPercent(diffSeries(movingAverage($base.$path.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.visualMetrics.SpeedIndex.$function, '24h'), #G), #G), 10), '速度指数')",
+          "textEditor": true,
+          "targetFull": "alias(aliasByNode(asPercent(diffSeries(movingAverage($base.$path.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.visualMetrics.SpeedIndex.$function, '24h'), timeShift(movingAverage($base.$path.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.visualMetrics.SpeedIndex.$function, '24h'), '1d')), timeShift(movingAverage($base.$path.pageSummary.$group.$page.$browser.$connectivity.browsertime.statistics.visualMetrics.SpeedIndex.$function, '24h'), '1d')), 10), '速度指数')",
+          "refCount": 3
+        }
+      ]
+    },
+    {
+      "id": 20004,
+      "type": "table",
       "title": "最近一周",
       "transform": "timeseries_aggregations",
       "datasource": "${DS_GRAPHITE}",
       "description": "最近一天性能指标平均值与上一周进行对比，。 \n\n 红色背景表示需要回归，绿色表示性能变好，黄色表示该变化在误差范围内。您可能需要根据网站的频率来调整阈值。默认阈值为+ -10％。",
       "gridPos": {
-        "h": 5,
-        "w": 12,
-        "x": 0,
-        "y": 9
+        "h": 8,
+        "w": 8,
+        "x": 8,
+        "y": 11
       },
       "editable": true,
       "error": false,
@@ -446,17 +564,17 @@
       ]
     },
     {
-      "id": 20004,
+      "id": 20005,
       "type": "table",
       "title": "最近一个月",
       "transform": "timeseries_aggregations",
       "datasource": "${DS_GRAPHITE}",
       "description": "最近一天性能指标平均值与上一个月进行对比，。 \n\n 红色背景表示需要回归，绿色表示性能变好，黄色表示该变化在误差范围内。您可能需要根据网站的频率来调整阈值。默认阈值为+ -10％。",
       "gridPos": {
-        "h": 5,
-        "w": 12,
-        "x": 12,
-        "y": 9
+        "h": 8,
+        "w": 8,
+        "x": 16,
+        "y": 11
       },
       "editable": true,
       "error": false,
@@ -572,7 +690,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 14
+        "y": 19
       },
       "panels": []
     },
@@ -584,9 +702,9 @@
       "description": "The max time spent in frontend vs backend time. \n\nThe backend time is the time it takes for the network and the server to generate and start sending the HTML. It is collected using the Navigation Timing API taking the responseStart minus navigationStart.\n\nThe frontend time is the time it takes for the browser to parse and create the page.  It is collected using the Navigation Timing API by taking the loadEventStart minus responseEnd.",
       "gridPos": {
         "h": 10,
-        "w": 12,
+        "w": 8,
         "x": 0,
-        "y": 15
+        "y": 20
       },
       "aliasColors": {},
       "bars": false,
@@ -690,9 +808,9 @@
       "editable": true,
       "gridPos": {
         "h": 10,
-        "w": 12,
-        "x": 12,
-        "y": 15
+        "w": 16,
+        "x": 8,
+        "y": 20
       },
       "aliasColors": {},
       "renderer": "flot",
@@ -771,8 +889,8 @@
       },
       "yaxes": [
         {
+          "label": "耗时",
           "format": "ms",
-          "label": null,
           "logBase": 1,
           "max": null,
           "min": null,
@@ -814,10 +932,10 @@
       "description": "不同类型资源的网络请求数量",
       "editable": true,
       "gridPos": {
-        "h": 15,
+        "h": 10,
         "w": 12,
         "x": 0,
-        "y": 25
+        "y": 30
       },
       "aliasColors": {},
       "renderer": "flot",
@@ -907,8 +1025,8 @@
       },
       "yaxes": [
         {
+          "label": "个数",
           "format": "none",
-          "label": null,
           "logBase": 1,
           "max": null,
           "min": null,
@@ -954,7 +1072,7 @@
         "h": 15,
         "w": 12,
         "x": 12,
-        "y": 25
+        "y": 30
       },
       "aliasColors": {},
       "renderer": "flot",
@@ -983,7 +1101,7 @@
         "hideZero": false,
         "max": true,
         "min": true,
-        "rightSide": true,
+        "rightSide": false,
         "show": true,
         "total": false,
         "values": true
@@ -1044,8 +1162,8 @@
       },
       "yaxes": [
         {
+          "label": "大小",
           "format": "decbytes",
-          "label": null,
           "logBase": 1,
           "max": null,
           "min": null,
@@ -1087,10 +1205,10 @@
       "description": "代码审查评分",
       "editable": true,
       "gridPos": {
-        "h": 5,
+        "h": 10,
         "w": 24,
         "x": 0,
-        "y": 40
+        "y": 45
       },
       "aliasColors": {},
       "renderer": "flot",
@@ -1119,7 +1237,7 @@
         "hideZero": false,
         "max": true,
         "min": true,
-        "rightSide": false,
+        "rightSide": true,
         "show": true,
         "total": false,
         "values": true
@@ -1127,27 +1245,27 @@
       "targets": [
         {
           "refId": "A",
-          "target": "alias($base.$path.pageSummary.$group.$page.$browser.$connectivity.coach.score, '综合')",
+          "target": "alias($base.$path.pageSummary.$group.$page.$browser.$connectivity.coach.adivce.score, '综合')",
           "textEditor": false
         },
         {
           "refId": "B",
-          "target": "alias($base.$path.pageSummary.$group.$page.$browser.$connectivity.coach.performance.score, '性能')",
+          "target": "alias($base.$path.pageSummary.$group.$page.$browser.$connectivity.coach.adivce.performance.score, '性能')",
           "textEditor": false
         },
         {
           "refId": "C",
-          "target": "alias($base.$path.pageSummary.$group.$page.$browser.$connectivity.coach.bestpractice.score, '最佳实践')",
+          "target": "alias($base.$path.pageSummary.$group.$page.$browser.$connectivity.coach.adivce.bestpractice.score, '最佳实践')",
           "textEditor": false
         },
         {
           "refId": "D",
-          "target": "alias($base.$path.pageSummary.$group.$page.$browser.$connectivity.coach.accessibility.score, '可访问性')",
+          "target": "alias($base.$path.pageSummary.$group.$page.$browser.$connectivity.coach.adivce.accessibility.score, '可访问性')",
           "textEditor": false
         },
         {
           "refId": "E",
-          "target": "alias($base.$path.pageSummary.$group.$page.$browser.$connectivity.coach.privacy.score, '隐私')",
+          "target": "alias($base.$path.pageSummary.$group.$page.$browser.$connectivity.coach.adivce.privacy.score, '隐私')",
           "textEditor": false
         }
       ],
@@ -1334,6 +1452,7 @@
         "useTags": false
       },
       {
+        "label": "分值",
         "auto": false,
         "auto_count": 30,
         "auto_min": "10s",
@@ -1342,7 +1461,6 @@
           "value": "median"
         },
         "hide": 0,
-        "label": null,
         "name": "function",
         "options": [
           {

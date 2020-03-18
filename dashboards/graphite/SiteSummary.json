@@ -160,7 +160,7 @@
         "show": true,
         "total": false,
         "values": true,
-        "rightSide": true
+        "rightSide": false
       },
       "seriesOverrides": [],
       "targets": [
@@ -173,7 +173,7 @@
         {
           "refCount": 0,
           "refId": "B",
-          "target": "alias(sitespeed_io.$path.summary.$group.$browser.$connectivity.browsertime.visualMetrics.SpeedIndex.$function, 'Speed Index')",
+          "target": "alias(sitespeed_io.$path.summary.$group.$browser.$connectivity.browsertime.visualMetrics.SpeedIndex.$function, '速度指数')",
           "textEditor": true
         }
       ],
@@ -243,7 +243,7 @@
       "description": "The max time spent in frontend vs backend time. \n\nThe backend time is the time it takes for the network and the server to generate and start sending the HTML. It is collected using the Navigation Timing API taking the responseStart minus navigationStart.\n\nThe frontend time is the time it takes for the browser to parse and create the page.  It is collected using the Navigation Timing API by taking the loadEventStart minus responseEnd.",
       "gridPos": {
         "h": 10,
-        "w": 12,
+        "w": 8,
         "x": 0,
         "y": 10
       },
@@ -349,8 +349,8 @@
       "editable": true,
       "gridPos": {
         "h": 10,
-        "w": 12,
-        "x": 12,
+        "w": 16,
+        "x": 8,
         "y": 10
       },
       "aliasColors": {},
@@ -379,7 +379,7 @@
         "hideZero": false,
         "max": true,
         "min": true,
-        "rightSide": false,
+        "rightSide": true,
         "show": true,
         "total": false,
         "values": true
@@ -430,8 +430,8 @@
       },
       "yaxes": [
         {
+          "label": "耗时",
           "format": "ms",
-          "label": null,
           "logBase": 1,
           "max": null,
           "min": null,
@@ -484,7 +484,7 @@
       "dashes": false,
       "dashLength": 10,
       "error": false,
-      "fill": 1,
+      "fill": 10,
       "grid": {},
       "lines": true,
       "linewidth": 1,
@@ -495,7 +495,7 @@
       "pointradius": 0.5,
       "seriesOverrides": [],
       "spaceLength": 10,
-      "stack": false,
+      "stack": true,
       "steppedLine": false,
       "legend": {
         "alignAsTable": true,
@@ -511,11 +511,6 @@
         "values": true
       },
       "targets": [
-        {
-          "refId": "A",
-          "target": "alias($base.$path.summary.$group.$browser.$connectivity.pagexray.requests.$function, 'Total')",
-          "textEditor": false
-        },
         {
           "refId": "B",
           "target": "alias($base.$path.summary.$group.$browser.$connectivity.pagexray.contentTypes.html.requests.$function, 'HTML')",
@@ -571,8 +566,8 @@
       },
       "yaxes": [
         {
+          "label": "个数",
           "format": "none",
-          "label": null,
           "logBase": 1,
           "max": null,
           "min": null,
@@ -626,7 +621,7 @@
       "dashes": false,
       "dashLength": 10,
       "error": false,
-      "fill": 1,
+      "fill": 10,
       "grid": {},
       "lines": true,
       "linewidth": 1,
@@ -637,7 +632,7 @@
       "pointradius": 0.5,
       "seriesOverrides": [],
       "spaceLength": 10,
-      "stack": false,
+      "stack": true,
       "steppedLine": false,
       "legend": {
         "alignAsTable": true,
@@ -647,17 +642,12 @@
         "hideZero": false,
         "max": true,
         "min": true,
-        "rightSide": true,
+        "rightSide": false,
         "show": true,
         "total": false,
         "values": true
       },
       "targets": [
-        {
-          "refId": "A",
-          "target": "alias($base.$path.summary.$group.$browser.$connectivity.pagexray.transferSize.$function, 'Total')",
-          "textEditor": false
-        },
         {
           "refId": "B",
           "target": "alias($base.$path.summary.$group.$browser.$connectivity.pagexray.contentTypes.html.transferSize.$function, 'HTML')",
@@ -713,8 +703,8 @@
       },
       "yaxes": [
         {
+          "label": "大小",
           "format": "decbytes",
-          "label": null,
           "logBase": 1,
           "max": null,
           "min": null,
@@ -756,7 +746,7 @@
       "description": "代码审查评分",
       "editable": true,
       "gridPos": {
-        "h": 5,
+        "h": 10,
         "w": 24,
         "x": 0,
         "y": 35
@@ -788,7 +778,7 @@
         "hideZero": false,
         "max": true,
         "min": true,
-        "rightSide": false,
+        "rightSide": true,
         "show": true,
         "total": false,
         "values": true
