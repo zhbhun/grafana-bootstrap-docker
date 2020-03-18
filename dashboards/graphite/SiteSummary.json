@@ -110,6 +110,9 @@
   ],
   "panels": [
     {
+      "id": 10000,
+      "type": "row",
+      "title": "可视化指标",
       "collapsed": false,
       "gridPos": {
         "h": 1,
@@ -117,11 +120,9 @@
         "x": 0,
         "y": 0
       },
-      "id": 10000,
-      "panels": [],
-      "title": "可视化指标",
-      "type": "row"
-    },{
+      "panels": []
+    },
+    {
       "id": 10001,
       "type": "graph",
       "title": "加载性能",
@@ -161,14 +162,7 @@
         "values": true,
         "rightSide": true
       },
-      "seriesOverrides": [
-        {
-          "alias": "首次绘制"
-        },
-        {
-          "alias": "Speed Index"
-        }
-      ],
+      "seriesOverrides": [],
       "targets": [
         {
           "refCount": 0,
@@ -229,17 +223,17 @@
       "cacheTimeout": ""
     },
     {
-      "collapsed": false,
+      "id": 10100,
+      "type": "row",
+      "title": "技术指标",
+      "collapsed": true,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
         "y": 9
       },
-      "id": 10100,
-      "panels": [],
-      "title": "技术指标",
-      "type": "row"
+      "panels": []
     },
     {
       "id": 10101,
@@ -764,7 +758,7 @@
       "gridPos": {
         "h": 5,
         "w": 24,
-        "x": 12,
+        "x": 0,
         "y": 35
       },
       "aliasColors": {},
