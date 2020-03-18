@@ -147,7 +147,7 @@
         "dataLinks": []
       },
       "gridPos": {
-        "h": 10,
+        "h": 12,
         "w": 12,
         "x": 0,
         "y": 1
@@ -228,7 +228,7 @@
       "description": "加载性能指标",
       "datasource": "${DS_GRAPHITE}",
       "gridPos": {
-        "h": 10,
+        "h": 12,
         "w": 12,
         "x": 12,
         "y": 1
@@ -335,7 +335,7 @@
       "datasource": "${DS_GRAPHITE}",
       "description": "今天性能指标平均值与昨天进行对比，。 \n\n 红色背景表示需要回归，绿色表示性能变好，黄色表示该变化在误差范围内。您可能需要根据网站的频率来调整阈值。默认阈值为+ -10％。",
       "gridPos": {
-        "h": 8,
+        "h": 6,
         "w": 8,
         "x": 0,
         "y": 11
@@ -453,7 +453,7 @@
       "datasource": "${DS_GRAPHITE}",
       "description": "最近一天性能指标平均值与上一周进行对比，。 \n\n 红色背景表示需要回归，绿色表示性能变好，黄色表示该变化在误差范围内。您可能需要根据网站的频率来调整阈值。默认阈值为+ -10％。",
       "gridPos": {
-        "h": 8,
+        "h": 6,
         "w": 8,
         "x": 8,
         "y": 11
@@ -571,7 +571,7 @@
       "datasource": "${DS_GRAPHITE}",
       "description": "最近一天性能指标平均值与上一个月进行对比，。 \n\n 红色背景表示需要回归，绿色表示性能变好，黄色表示该变化在误差范围内。您可能需要根据网站的频率来调整阈值。默认阈值为+ -10％。",
       "gridPos": {
-        "h": 8,
+        "h": 6,
         "w": 8,
         "x": 16,
         "y": 11
@@ -932,7 +932,7 @@
       "description": "不同类型资源的网络请求数量",
       "editable": true,
       "gridPos": {
-        "h": 10,
+        "h": 15,
         "w": 12,
         "x": 0,
         "y": 30
@@ -1245,27 +1245,27 @@
       "targets": [
         {
           "refId": "A",
-          "target": "alias($base.$path.pageSummary.$group.$page.$browser.$connectivity.coach.adivce.score, '综合')",
+          "target": "alias($base.$path.pageSummary.$group.$page.$browser.$connectivity.coach.advice.score, '综合')",
           "textEditor": false
         },
         {
           "refId": "B",
-          "target": "alias($base.$path.pageSummary.$group.$page.$browser.$connectivity.coach.adivce.performance.score, '性能')",
+          "target": "alias($base.$path.pageSummary.$group.$page.$browser.$connectivity.coach.advice.performance.score, '性能')",
           "textEditor": false
         },
         {
           "refId": "C",
-          "target": "alias($base.$path.pageSummary.$group.$page.$browser.$connectivity.coach.adivce.bestpractice.score, '最佳实践')",
+          "target": "alias($base.$path.pageSummary.$group.$page.$browser.$connectivity.coach.advice.bestpractice.score, '最佳实践')",
           "textEditor": false
         },
         {
           "refId": "D",
-          "target": "alias($base.$path.pageSummary.$group.$page.$browser.$connectivity.coach.adivce.accessibility.score, '可访问性')",
+          "target": "alias($base.$path.pageSummary.$group.$page.$browser.$connectivity.coach.advice.accessibility.score, '可访问性')",
           "textEditor": false
         },
         {
           "refId": "E",
-          "target": "alias($base.$path.pageSummary.$group.$page.$browser.$connectivity.coach.adivce.privacy.score, '隐私')",
+          "target": "alias($base.$path.pageSummary.$group.$page.$browser.$connectivity.coach.advice.privacy.score, '隐私')",
           "textEditor": false
         }
       ],
